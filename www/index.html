@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2196f3">
+    <title>HuntersFab</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <!-- CSS Personalizado para Menu-->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/detalhes.css">
+    <link rel="stylesheet" href="css/descarte.css">
+    <link rel="stylesheet" href="css/contatos.css">
+    <link rel="stylesheet" href="css/sobre.css">
+    <link rel="stylesheet" href="css/link2.css">
+    <!-- Ícones Material Design-->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <!-- Ícones do Remix Icon-->
+    <link rel="stylesheet" href="css/remixicon/remixicon.css">
+    <style>
+        .swiper {
+            width: 100%;
+            height: auto;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-fluid {
+            width: 100%;
+            height: auto;
+        }
+
+        .page-content {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .toolbar-bottom {
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="view view-main">
+
+            <!-- Menu Principal -->
+            <div id="menuPrincipal" class="toolbar toolbar-bottom">
+                <div class="toolbar-inner display-flex">
+                    <a href="/index/" class="tab-link link active">
+                        <i class="ri-home-5-line"></i>
+                        <span>Home</span>
+                        <a href="/games/" class="tab-link link">
+                            <i class="ri-car-line"></i>
+                            <span>SERVIÇOS</span>
+                        </a>
+
+                        <a href="/link2/" class="tab-link link">
+                            <i class="ri-menu-line"></i>
+                            <span>Menu</span>
+                        </a>
+                </div>
+            </div>
+
+            <!-- Página Principal -->
+            <div data-name="index" class="page color-theme-blue">
+                <div class="top-nav">
+                    <img src="img/logo.png" alt="Logo da HuntersFab" class="imagem-logo">
+
+                    <br>
+
+                    <div class="page-content">
+                        <div class="block no-margin-top">
+
+                            <br>
+
+                            <div class="align-items-center justify-content-flex-end">
+                                <span class="animated-box"
+                                    style="color: #ffffff; font-weight: bold; text-align: center; display: block; font-size: 16px; background-color: #348cdd; padding: 10px; border-radius: 10px;">
+                                    Simplificamos o entendimento de peças de computadores, orientamos upgrades
+                                    compatíveis e promovemos o descarte eletrônico sustentável.
+                                </span>
+                            </div>
+
+                            <br>
+
+                            <style>
+                                @keyframes pulse {
+                                    0% {
+                                        transform: scale(1);
+                                    }
+
+                                    50% {
+                                        transform: scale(1.1);
+                                    }
+
+                                    100% {
+                                        transform: scale(1);
+                                    }
+                                }
+
+                                .animated-box {
+                                    animation: pulse 2s infinite;
+                                }
+                            </style>
+
+
+                            <br>
+
+                            <!-- Swiper 1 -->
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="img/bmw blue.png" alt="bmw blue">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="img/dodge.png" alt="dodge">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="img/shelby.png" alt="shelby">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="img/bulgatti.png" alt="bulgatti">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="img/mercedes.png" alt="mercedes">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="img/skyline.png" alt="skyline">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="img/eleanor.png" alt="eleanor">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img class="img-fluid" src="img/shelby cobra.png" alt="shelby cobra">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                        <div class="display-flex align-items-center justify-content-flex-end">
+                            <a href="/games/" style="color: #2188e9; font-weight: bold">
+                                Veja Mais <i class="mdi mdi-arrow-right"></i>
+                            </a>
+                        </div>
+
+
+                        <!-- Swiper 2 -->
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="img/escape em titanio.png" alt="escape em titanio">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="img/escape 911 922.png" alt="escape911 922">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="img/escape.png" alt="escape">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="img/bmw.png" alt="bmw">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="img/porche.jpg" alt="porche">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="img/AMD Radeon RX 7600.png" alt="AMD Radeon RX 7600">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="img/Ryzen 8000.png" alt="Ryzen 8000">
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                        <br>
+
+                        <!-- Swiper 3 -->
+                        <div class="call">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img class="img-fluid" src="img/Call of Duty.png" alt="Call of Duty">
+                                </div>
+                            </div>
+
+                            <br>
+                            <div
+                                style="display: flex; align-items: center; justify-content: center; font-weight: bold; color: #ec790e; white-space: nowrap;">
+                                <span style="margin-right: 5px;">Clique<a href="/configuracao/"
+                                        style="text-decoration: none; color: #2188e9; margin: 0 2px;">aqui</a>
+                                    para
+                                    ver
+                                    as melhores configurações para o seu PC</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+                    <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>
+                    <script type="text/javascript" src="js/routes.js"></script>
+                    <script src="cordova.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
