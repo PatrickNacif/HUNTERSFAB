@@ -36,7 +36,8 @@ body {
     height: 80px;
     line-height: 25px;
     font-weight: bold;
-    color: var(--azul);
+    color: #000000;
+    ;
     /* Links com altura, cor e negrito */
 }
 
