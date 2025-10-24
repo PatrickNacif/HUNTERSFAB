@@ -1,52 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <!-- Color theme for statusbar (Android only) -->
   <meta name="theme-color" content="#2196f3">
-  <!-- Your app title -->
-  <title>
-    <span>Login</span>
-  </title>
-  <!-- Path to Framework7 Library Bundle CSS -->
+  <title>Login</title>
+
+  <!-- Framework7 e CSSs -->
   <link rel="stylesheet" href="lib/framework7-bundle.min.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/menu.css">
-
-  <!-- CSS PERSONALIZADO PARA MENU-->
   <link rel="stylesheet" href="css/personalizado.css">
-  <!--Ícones Material Design-->
   <link rel="stylesheet" href="css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
 
+<body>
+  <!-- Página de Login -->
   <div class="page" data-name="login">
-
-    <head>
-      <link rel="stylesheet" href="css/login.css">
-    </head>
-
     <div class="top-nav2">
-      <!-- Navega usando o router do Framework7 -->
       <a href="/index/" class="logo-link">
         <img src="img/logo.png" alt="Logo" class="imagem-logo">
       </a>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <div class="page-content">
       <div class="login-container">
         <h1>Login</h1>
 
-
         <!-- FORMULÁRIO DE LOGIN -->
-
-        <form action="login.php" method="POST">
-          <input type="email" name="email" placeholder="E-mail" required autocomplete="email">
-          <input type="password" name="senha" placeholder="Senha" required autocomplete="current-password">
+        <form id="loginForm">
+          <input type="email" id="email" placeholder="E-mail" required autocomplete="email">
+          <input type="password" id="senha" placeholder="Senha" required autocomplete="current-password">
           <button type="submit">Entrar</button>
         </form>
       </div>
     </div>
+    <!-- Menu Principal -->
+    <div id="menuPrincipal" class="toolbar toolbar-bottom">
+      <div class="toolbar-inner display-flex">
+        <a href="/index/" class="tab-link link active">
+          <i class="ri-home-5-line"></i>
+          <span>Home</span>
+
+          <a href="/menu/" class="tab-link link">
+            <i class="ri-menu-line"></i>
+            <span>Menu</span>
+          </a>
+      </div>
+    </div>
+  </div>
   </div>
 
-  <head>
+  <!-- Script de login isolado -->
+  <script src="lib/framework7-bundle.min.js"></script>
+
+</html>

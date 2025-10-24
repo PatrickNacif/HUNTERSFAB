@@ -1,84 +1,280 @@
-// ===============================
-// INICIALIZAÇÃO DO FRAMEWORK7
-// ===============================
+// INICIALIZAÇÃO DO F7 QUANDO DISPOSITIVO ESTÁ PRONTO
 document.addEventListener('deviceready', onDeviceReady, false);
 
 var app = new Framework7({
+  // App root element
   el: '#app',
+  // App Name
   name: 'My App',
+  // App id
   id: 'com.myapp.test',
-  panel: { swipe: true },
-  dialog: { buttonOk: 'Sim', buttonCancel: 'Cancelar' },
-  cache: false, // <-- DESABILITA CACHE GLOBAL
+  // Enable swipe panel
+  panel: {
+    swipe: true,
+  },
+  dialog: {
+    buttonOk: 'Sim',
+    buttonCancel: 'Cancelar',
+  },
+  // Add default routes
   routes: [
     {
       path: '/index/',
       url: 'index.html',
       animate: false,
-      options: { reloadCurrent: true, ignoreCache: true }, // força recarregamento
       on: {
-        pageBeforeIn: function () {
-          console.log("🔁 Preparando para recarregar a Index do zero...");
+        pageBeforeIn: function (event, page) {
+          // Fazer algo antes da página ser exibida
         },
-        pageInit: function () {
-          console.log("✅ Página index carregada com todos os componentes.");
-          initIndexPage();
-        }
+        pageAfterIn: function (event, page) {
+          // Fazer algo depois da página ser exibida
+        },
+        pageInit: function (event, page) {
+          // Fazer algo quando a página for inicializada
+          app.views.main.router.navigate('/index/');
+          $.getScript('js/index.js');
+
+          var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+              delay: 3000,
+            },
+            breakpoints: {
+              50: {
+                slidesPerView: 1,
+                spaceBetween: 30
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 30
+              },
+              992: {
+                slidesPerView: 3,
+                spaceBetween: 30
+              },
+              1200: {
+                slidesPerView: 4,
+                spaceBetween: 30
+              }
+            },
+          });
+
+          var swiper2 = new Swiper(".categorias", {
+            slidesPerView: 4,
+            spaceBetween: 10,
+            breakpoints: {
+              50: {
+                slidesPerView: 4,
+                spaceBetween: 10
+              },
+              640: {
+                slidesPerView: 7,
+                spaceBetween: 10
+              },
+              992: {
+                slidesPerView: 9,
+                spaceBetween: 10
+              },
+              1200: {
+                slidesPerView: 13,
+                spaceBetween: 10
+              }
+            },
+            autoplay: {
+              delay: 3000,
+            },
+            loop: true,
+          });
+        },
+        pageBeforeRemove: function (event, page) {
+          // Fazer algo antes da página ser removida do DOM
+        },
+      }
+    },
+    {
+      path: '/cadastro/',
+      url: 'cadastro.html',
+      animate: false,
+      on: {
+        pageBeforeIn: function (event, page) {
+          // Fazer algo antes da página ser exibida
+        },
+        pageAfterIn: function (event, page) {
+          // Fazer algo depois da página ser exibida
+        },
+        pageInit: function (event, page) {
+          // Fazer algo quando a página for inicializada
+          app.views.main.router.navigate('/cadastro/');
+          $.getScript('js/cadastro.js');
+        },
+        pageBeforeRemove: function (event, page) {
+          // Fazer algo antes da página ser removida do DOM
+        },
+      }
+    },
+    {
+      path: '/login/',
+      url: 'login.html',
+      animate: false,
+      on: {
+        pageBeforeIn: function (event, page) {
+          // Fazer algo antes da página ser exibida
+        },
+        pageAfterIn: function (event, page) {
+          // Fazer algo depois da página ser exibida
+        },
+        pageInit: function (event, page) {
+          // Fazer algo quando a página for inicializada
+          app.views.main.router.navigate('/logi/');
+          $.getScript('js/login.js');
+        },
+        pageBeforeRemove: function (event, page) {
+          // Fazer algo antes da página ser removida do DOM
+        },
       }
     },
     {
       path: '/performace/',
       url: 'performace.html',
       animate: false,
-      options: { reloadCurrent: true, ignoreCache: true },
       on: {
-        pageInit: function () {
-          console.log("✅ Página performace carregada do zero.");
-          initPerformacePage();
-        }
+        pageBeforeIn: function (event, page) {
+          // Fazer algo antes da página ser exibida
+
+        },
+        pageAfterIn: function (event, page) {
+          // Fazer algo depois da página ser exibida
+        },
+        pageInit: function (event, page) {
+          // Fazer algo quando a página for inicializada
+          app.views.main.router.navigate('/performace/');
+          $.getScript('js/performace.js');
+        },
+        pageBeforeRemove: function (event, page) {
+          // Fazer algo antes da página ser removida do DOM
+        },
       }
     },
-    { path: '/login/', url: 'login.html', animate: false, options: { reloadCurrent: true, ignoreCache: true } },
-    { path: '/cadastro/', url: 'cadastro.html', animate: false, options: { reloadCurrent: true, ignoreCache: true } },
-    { path: '/menu/', url: 'menu.html', animate: false, options: { reloadCurrent: true, ignoreCache: true } },
-    { path: '/sobre/', url: 'sobre.html', animate: false, options: { reloadCurrent: true, ignoreCache: true } },
-    { path: '/sobre_o_trabalho/', url: 'sobre_o_trabalho.html', animate: false, options: { reloadCurrent: true, ignoreCache: true } },
-    { path: '/contatos/', url: 'contatos.html', animate: false, options: { reloadCurrent: true, ignoreCache: true } }
-  ]
+
+    {
+      path: '/sobre/',
+      url: 'sobre.html',
+      animate: false,
+      on: {
+        pageBeforeIn: function (event, page) {
+          // Fazer algo antes da página ser exibida
+
+        },
+        pageAfterIn: function (event, page) {
+          // Fazer algo depois da página ser exibida
+        },
+        pageInit: function (event, page) {
+          // Fazer algo quando a página for inicializada
+          app.views.main.router.navigate('/csobre/');
+          $.getScript('js/sobre.js');
+        },
+        pageBeforeRemove: function (event, page) {
+          // Fazer algo antes da página ser removida do DOM
+        },
+      }
+    },
+
+    {
+      path: '/menu/',
+      url: 'menu.html',
+      animate: false,
+      on: {
+        pageBeforeIn: function (event, page) {
+          // Fazer algo antes da página ser exibida
+
+        },
+        pageAfterIn: function (event, page) {
+          // Fazer algo depois da página ser exibida
+        },
+        pageInit: function (event, page) {
+          // Fazer algo quando a página for inicializada
+          app.views.main.router.navigate('/menu/');
+          $.getScript('js/menu.js');
+        },
+        pageBeforeRemove: function (event, page) {
+          // Fazer algo antes da página ser removida do DOM
+        },
+      }
+    },
+
+    {
+      path: '/sobre_o_trabalho/',
+      url: 'sobre_o_trabalho.html',
+      animate: false,
+      on: {
+        pageBeforeIn: function (event, page) {
+          // Fazer algo antes da página ser exibida
+
+        },
+        pageAfterIn: function (event, page) {
+          // Fazer algo depois da página ser exibida
+        },
+        pageInit: function (event, page) {
+          // Fazer algo quando a página for inicializada
+          app.views.main.router.navigate('/sobre_o_trabalho/');
+          $.getScript('js/sobre_o_trabalho.js');
+        },
+        pageBeforeRemove: function (event, page) {
+          // Fazer algo antes da página ser removida do DOM
+        },
+      }
+    },
+    {
+      path: '/contatos/',
+      url: 'contatos.html',
+      animate: false,
+      on: {
+        pageBeforeIn: function (event, page) {
+          // Fazer algo antes da página ser exibida
+
+        },
+        pageAfterIn: function (event, page) {
+          // Fazer algo depois da página ser exibida
+        },
+        pageInit: function (event, page) {
+          // Fazer algo quando a página for inicializada
+          app.views.main.router.navigate('/contatos/');
+          $.getScript('js/contatos.js');
+        },
+        pageBeforeRemove: function (event, page) {
+          // Fazer algo antes da página ser removida do DOM
+        },
+      }
+    },
+
+  ],
+  // ... other parameters
 });
 
-// ===============================
-// CRIAÇÃO DA VIEW PRINCIPAL
-// ===============================
-var mainView = app.views.create('.view-main', { url: '/index/', reloadCurrent: true, ignoreCache: true });
 
-// ===============================
-// FUNÇÃO DE ROTEAMENTO GLOBAL
-// ===============================
+
+// Para testes direto no navegador
+var mainView = app.views.create('.view-main', { url: '/index/' });
+
+// EVENTO PARA SABER O ITEM DO MENU ATUAL
 app.on('routeChange', function (route) {
   var currentRoute = route.url;
-  console.log("Rota atual:", currentRoute);
-
-  // Ativa item do menu
+  console.log(currentRoute);
   document.querySelectorAll('.tab-link').forEach(function (el) {
     el.classList.remove('active');
   });
   var targetEl = document.querySelector('.tab-link[href="' + currentRoute + '"]');
-  if (targetEl) targetEl.classList.add('active');
-
-  // Oculta menu em login e cadastro
-  var path = route.route.path;
-  if (path === '/login/' || path === '/cadastro/') {
-    $('#menuPrincipal').hide();
-  } else {
-    $('#menuPrincipal').show();
+  if (targetEl) {
+    targetEl.classList.add('active');
   }
 });
 
-// ===============================
-// FUNÇÃO QUANDO O DISPOSITIVO ESTÁ PRONTO (CORDOVA)
-// ===============================
 function onDeviceReady() {
+  // Quando estiver rodando no celular
+  var mainView = app.views.create('.view-main', { url: '/index/' }); // Navega para a página inicial
+
+  // COMANDO PARA "OUVIR" O BOTÃO VOLTAR NATIVO DO ANDROID 
   document.addEventListener("backbutton", function (e) {
     if (mainView.router.currentRoute.path === '/index/') {
       e.preventDefault();
@@ -90,49 +286,4 @@ function onDeviceReady() {
       mainView.router.back({ force: true });
     }
   }, false);
-}
-
-// ===============================
-// FUNÇÃO ESPECÍFICA PARA A PÁGINA INDEX
-// ===============================
-function initIndexPage() {
-  window.swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    autoplay: { delay: 3000 },
-    breakpoints: {
-      50: { slidesPerView: 1 },
-      640: { slidesPerView: 2 },
-      992: { slidesPerView: 3 },
-      1200: { slidesPerView: 4 }
-    }
-  });
-
-  window.swiper2 = new Swiper(".categorias", {
-    slidesPerView: 4,
-    spaceBetween: 10,
-    autoplay: { delay: 3000 },
-    loop: true,
-    breakpoints: {
-      50: { slidesPerView: 4 },
-      640: { slidesPerView: 7 },
-      992: { slidesPerView: 9 },
-      1200: { slidesPerView: 13 }
-    }
-  });
-
-  $.getScript('js/index.js');
-}
-
-// ===============================
-// FUNÇÃO ESPECÍFICA PARA A PÁGINA PERFORMACE
-// ===============================
-function initPerformacePage() {
-  console.log("🔹 Scripts e personalizações da página performace carregados.");
-
-  var selects = document.querySelectorAll('.page[data-name="performace"] select');
-  selects.forEach(function (sel) {
-    sel.style.color = '#fff';
-    sel.style.background = 'rgba(255,255,255,0.1)';
-  });
 }
