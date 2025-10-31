@@ -19,14 +19,11 @@
   <link rel="stylesheet" href="css/performace.css">
   <link rel="stylesheet" href="css/personalizado.css">
 
-
-
   <!-- CSS PERSONALIZADO PARA MENU-->
   <link rel="stylesheet" href="css/personalizado.css">
   <!--Ícones Material Design-->
   <link rel="stylesheet" href="css/materialdesignicons.min.css">
 </head>
-
 
 <body>
   <!-- App root element -->
@@ -38,11 +35,12 @@
 
         <!-- Top Navbar -->
         <div class="top-nav2">
-          <a href="/index/" class="top-nav2">
+          <a href="#" class="top-nav2" onclick="window.location.href='http://localhost/HUNTERSFAB/www/'; return false;">
             <img src="img/logo.png" alt="Logo" class="imagem-logo">
             <div class="top-nav2-bg"></div>
           </a>
         </div>
+
 
         <br>
 
@@ -53,50 +51,24 @@
             <div class="filter-item">
               <select id="fabricante" aria-label="Fabricante" required>
                 <option value="">Fabricante</option>
-                <option>Audi</option>
-                <option>BMW</option>
-                <option>Chevrolet</option>
-                <option>Citroen</option>
-                <option>Fiat</option>
-                <option>Ford</option>
-                <option>Honda</option>
-                <option>Jeep</option>
-                <option>Land Rover</option>
-                <option>Mercedes</option>
-                <option>Mini</option>
-                <option>Mitsubishi</option>
-                <option>Nissan</option>
-                <option>Porsche</option>
-                <option>Renault</option>
-                <option>Subaru</option>
-                <option>Troller</option>
-                <option>Volkswagen</option>
-                <option>Alfa Romeo</option>
-                <option>Aston Martin</option>
-                <option>Dodge</option>
-                <option>Ferrari</option>
-                <option>Lamborghini</option>
-                <option>Lexus</option>
-                <option>Lotus</option>
-                <option>Mazda</option>
-                <option>McLaren</option>
-                <option>Pontiac</option>
-                <option>Rolls-Royce</option>
-                <option>Toyota</option>
-                <option>Jaguar</option>
-                <option>Bugatti</option>
-                <option>Seat</option>
-                <option>Skoda</option>
-                <option>Peugeot</option>
-                <option>Infiniti</option>
-                <option>Acura</option>
-                <option>Chevrolet Corvette</option>
-                <option>Cadillac</option>
-                <option>Hyundai</option>
-                <option>Kia</option>
-                <option>Buick</option>
-                <option>Chrysler</option>
-                <option>Lincoln</option>
+                <option value="Audi">Audi</option>
+                <option value="BMW">BMW</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Citroen">Citroen</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Ford">Ford</option>
+                <option value="Honda">Honda</option>
+                <option value="Jeep">Jeep</option>
+                <option value="Land Rover">Land Rover</option>
+                <option value="Mercedes">Mercedes</option>
+                <option value="Mini">Mini</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Porsche">Porsche</option>
+                <option value="Renault">Renault</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Troller">Troller</option>
+                <option value="Volkswagen">Volkswagen</option>
               </select>
             </div>
 
@@ -145,8 +117,385 @@
           }
         </script>
 
-
         <script src="js/script.js"></script>
+
+        <!-- Script para popular Modelo e Ano -->
+        <script>
+          // Dados de anos por fabricante e modelo
+          const anosPorModelo = {
+            "Audi": {
+              "A1": ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028"],
+              "A3": ["2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012"],
+              "A4": ["2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"],
+              "A5": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"],
+              "A6": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+              "Q3": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+              "Q5": ["2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"],
+              "Q7": ["2010", "2011", "2012", "2013", "2014"],
+              "RS3": ["2017", "2018", "2019", "2020", "2021", "2022"],
+              "RS4": ["2018", "2019", "2020", "2021", "2022"],
+              "RS5": ["2017", "2018", "2019", "2020", "2021"],
+              "RS6": ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"],
+              "RSQ3": ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"],
+              "S3": ["2012", "2013", "2014", "2015", "2016"],
+              "S4": ["2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015"],
+              "TT": ["2016", "2017", "2018", "2019", "2020"],
+              "TTS": ["2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+              "R8": ["2015", "2016", "2017", "2018", "2019", "2020", "2021"]
+            },
+            "BMW": {
+              "M2": ["2017", "2018", "2019", "2020", "2021"],
+              "M3": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "M4": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "M5": ["2017", "2018", "2019", "2020", "2021", "2022"],
+              "M6": ["2016", "2017", "2018", "2019", "2020"],
+              "M8": ["2020", "2021", "2022"],
+              "X5 M": ["2018", "2019", "2020", "2021", "2022"],
+              "X6 M": ["2018", "2019", "2020", "2021", "2022"],
+              "Z4 M": ["2019", "2020", "2021"],
+              "i4 M": ["2022", "2023", "2024"],
+              "i7 M": ["2022", "2023", "2024"]
+            },
+            "Chevrolet": {
+              "Camaro": ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+              "Camaro SS": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Camaro ZL1": ["2018", "2019", "2020", "2021", "2022"],
+              "Corvette": ["2017", "2018", "2019", "2020", "2021", "2022"],
+              "Corvette Z06": ["2018", "2019", "2020", "2021"],
+              "Corvette ZR1": ["2019", "2020", "2021"],
+              "Cruze": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Equinox": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "S10": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Trailbrazer": ["2018", "2019", "2020", "2021"]
+            },
+            "Citroen": {
+              "DS3": ["2015", "2016", "2017", "2018"],
+              "DS3 Racing": ["2015", "2016", "2017"],
+              "DS4 Racing": ["2016", "2017", "2018"]
+            },
+            "Fiat": {
+              "Toro": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Abarth 500": ["2015", "2016", "2017", "2018", "2019"],
+              "Abarth 595": ["2016", "2017", "2018", "2019"],
+              "Abarth 695": ["2017", "2018", "2019"]
+            },
+            "Ford": {
+              "Ranger": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Maverick": ["2022", "2023", "2024"],
+              "Fusion": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Bronco": ["2021", "2022", "2023"],
+              "Mustang": ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+              "Focus RS": ["2016", "2017", "2018"],
+              "New Fiesta": ["2015", "2016", "2017", "2018"],
+              "Fiesta ST": ["2015", "2016", "2017", "2018"]
+            },
+            "Honda": {
+              "Civic Type R": ["2017", "2018", "2019", "2020", "2021"],
+              "NSX": ["2016", "2017", "2018", "2019", "2020"]
+            },
+            "Jeep": {
+              "Renegade": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Compass": ["2017", "2018", "2019", "2020", "2021"],
+              "Commander": ["2018", "2019", "2020", "2021"],
+              "Grand Cherokee SRT": ["2016", "2017", "2018", "2019", "2020"],
+              "Trackhawk": ["2018", "2019", "2020", "2021"]
+            },
+            "Land Rover": {
+              "Evoque": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Discovery Sport": ["2017", "2018", "2019", "2020", "2021"],
+              "Range Rover Sport SVR": ["2016", "2017", "2018", "2019", "2020", "2021"]
+            },
+            "Mercedes": {
+              "A": ["2016", "2017", "2018", "2019", "2020"],
+              "B": ["2016", "2017", "2018", "2019", "2020"],
+              "C": ["2015", "2016", "2017", "2018", "2019", "2020"],
+              "CLA": ["2017", "2018", "2019", "2020", "2021"],
+              "GLA": ["2016", "2017", "2018", "2019", "2020"],
+              "CLE / GLE Coupé": ["2019", "2020", "2021"],
+              "ML": ["2016", "2017", "2018", "2019", "2020"],
+              "S": ["2017", "2018", "2019", "2020", "2021"],
+              "A45 AMG": ["2016", "2017", "2018", "2019", "2020"],
+              "C63 AMG": ["2015", "2016", "2017", "2018", "2019", "2020"],
+              "E63 AMG": ["2017", "2018", "2019", "2020", "2021"],
+              "GT": ["2016", "2017", "2018", "2019", "2020", "2021"]
+            },
+            "Mini": {
+              "Cooper": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Countryman": ["2017", "2018", "2019", "2020", "2021"],
+              "John Cooper Works": ["2016", "2017", "2018", "2019", "2020", "2021"]
+            },
+            "Mitsubishi": {
+              "Eclipse": ["2015", "2016", "2017", "2018"],
+              "Lancer": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Lancer Evolution": ["2015", "2016", "2017"],
+              "Lancer Ralliart": ["2016", "2017", "2018"],
+              "Outlander": ["2017", "2018", "2019", "2020", "2021"],
+              "Lancer Evolution X": ["2015", "2016"]
+            },
+            "Nissan": {
+              "350Z": ["2015", "2016", "2017", "2018", "2019"],
+              "370Z": ["2015", "2016", "2017", "2018", "2019", "2020"],
+              "GT-R": ["2015", "2016", "2017", "2018", "2019", "2020"],
+              "Frontier": ["2016", "2017", "2018", "2019", "2020", "2021"]
+            },
+            "Porsche": {
+              "Boxster": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Cayenne": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Cayman": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Macan": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "718 Cayman": ["2017", "2018", "2019", "2020", "2021", "2022"],
+              "911": ["2015", "2016", "2017", "2018", "2019", "2020", "2021"],
+              "911 Turbo": ["2015", "2016", "2017", "2018", "2019", "2020", "2021"],
+              "911 GT3": ["2017", "2018", "2019", "2020", "2021"],
+              "Taycan": ["2020", "2021", "2022"]
+            },
+            "Renault": {
+              "Sandero": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Megane RS": ["2018", "2019", "2020", "2021"]
+            },
+            "Subaru": {
+              "Forester XT": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Impreza": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Legacy": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "WRX STI": ["2015", "2016", "2017", "2018", "2019", "2020"],
+              "BRZ": ["2016", "2017", "2018", "2019", "2020", "2021"]
+            },
+            "Troller": {
+              "T4": ["2016", "2017", "2018", "2019", "2020", "2021"]
+            },
+            "Volkswagen": {
+              "Amarok": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Golf": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Golf GTI": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Golf R": ["2017", "2018", "2019", "2020", "2021"],
+              "Jetta": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Polo": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Polo GTS": ["2020", "2021", "2022"],
+              "Nivus": ["2020", "2021", "2022"],
+              "Virtus": ["2020", "2021", "2022"],
+              "Virtus GTS": ["2020", "2021", "2022"],
+              "Passat": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "T-Cross": ["2019", "2020", "2021", "2022"],
+              "Taos": ["2020", "2021", "2022"],
+              "Tiguan": ["2016", "2017", "2018", "2019", "2020", "2021"],
+              "Up!": ["2016", "2017", "2018", "2019", "2020", "2021"]
+            }
+          };
+
+          // Dados de versões por fabricante e modelo
+          const versoesPorModelo = {
+            "Audi": {
+              "A1": ["1.0 TFSI", "S Line", "Urban"],
+              "A3": ["1.4 TFSI", "Ambition", "Sportback"],
+              "A4": ["2.0 TFSI", "Avant", "S Line"],
+              "A5": ["2.0 TFSI", "Sportback", "S Line"],
+              "A6": ["2.0 TFSI", "Avant", "S Line"],
+              "Q3": ["1.4 TFSI", "S Line", "Quattro"],
+              "Q5": ["2.0 TFSI", "S Line", "Quattro"],
+              "Q7": ["3.0 TFSI", "Quattro", "S Line"],
+              "RS3": ["2.5 TFSI", "Sportback", "Performance"],
+              "RS4": ["2.9 V6 Biturbo", "Avant", "Competition"],
+              "RS5": ["2.9 V6 Biturbo", "Sportback", "Competition"],
+              "RS6": ["4.0 V8 Biturbo", "Avant", "Performance"],
+              "RSQ3": ["2.5 TFSI", "Quattro", "Performance"],
+              "S3": ["2.0 TFSI", "Sedan", "Sportback"],
+              "S4": ["3.0 V6 TFSI", "Avant", "Quattro"],
+              "TT": ["2.0 TFSI", "TTS", "TTRS"],
+              "TTS": ["2.0 TFSI", "S Line", "Quattro"],
+              "R8": ["5.2 V10", "V10 Plus", "Performance Quattro"]
+            },
+            "BMW": {
+              "M2": ["3.0 TwinPower Turbo", "Competition"],
+              "M3": ["3.0 TwinPower Turbo", "Competition", "CS"],
+              "M4": ["3.0 TwinPower Turbo", "Competition", "CSL"],
+              "M5": ["4.4 V8 Biturbo", "Competition"],
+              "M6": ["4.4 V8 Biturbo", "Competition"],
+              "M8": ["4.4 V8 Biturbo", "Competition", "Gran Coupe"],
+              "X5 M": ["4.4 V8 Biturbo", "Competition"],
+              "X6 M": ["4.4 V8 Biturbo", "Competition"],
+              "Z4 M": ["3.0 TwinPower Turbo", "Roadster"],
+              "i4 M": ["Electric M", "Competition"],
+              "i7 M": ["Electric M", "Luxury"]
+            },
+            "Chevrolet": {
+              "Camaro": ["SS 6.2 V8", "ZL1 6.2 Supercharged"],
+              "Camaro SS": ["6.2 V8", "Convertible"],
+              "Camaro ZL1": ["6.2 Supercharged", "Track Edition"],
+              "Corvette": ["Stingray 6.2 V8", "Z06 6.2 Supercharged"],
+              "Corvette Z06": ["6.2 Supercharged", "Track Edition"],
+              "Corvette ZR1": ["6.2 Supercharged", "Performance"],
+              "Cruze": ["1.4 Turbo", "LT", "Premier"],
+              "Equinox": ["1.5 Turbo", "LT", "Premier"],
+              "S10": ["2.8 Diesel", "High Country"],
+              "Trailbrazer": ["3.6 V6", "RS"]
+            },
+            "Citroen": {
+              "DS3": ["1.6 THP", "Chic"],
+              "DS3 Racing": ["1.6 THP Turbo", "Sport Chic"],
+              "DS4 Racing": ["1.6 THP Turbo", "Performance"]
+            },
+            "Fiat": {
+              "Toro": ["2.0 Diesel", "Volcano", "Ranch"],
+              "Abarth 500": ["1.4 T-Jet", "Competizione"],
+              "Abarth 595": ["1.4 T-Jet", "Competizione"],
+              "Abarth 695": ["1.4 T-Jet", "Rivale"]
+            },
+            "Ford": {
+              "Ranger": ["2.2 Diesel", "XLT", "Limited"],
+              "Maverick": ["2.0 Hybrid", "Lariat"],
+              "Fusion": ["2.0 Hybrid", "Titanium"],
+              "Bronco": ["2.3 EcoBoost", "Badlands"],
+              "Mustang": ["2.3 EcoBoost", "5.0 V8 GT", "Mach 1"],
+              "Focus RS": ["2.3 EcoBoost AWD"],
+              "New Fiesta": ["1.6 EcoBoost", "ST-Line"],
+              "Fiesta ST": ["1.6 EcoBoost Turbo"]
+            },
+            "Honda": {
+              "Civic Type R": ["2.0 VTEC Turbo", "Sport Line"],
+              "NSX": ["3.5 V6 Híbrido", "Sport Hybrid SH-AWD"]
+            },
+            "Jeep": {
+              "Renegade": ["1.3 Turbo", "Trailhawk"],
+              "Compass": ["2.0 Turbo", "Limited"],
+              "Commander": ["3.6 V6", "Overland"],
+              "Grand Cherokee SRT": ["6.4 V8 HEMI"],
+              "Trackhawk": ["6.2 V8 Supercharged"]
+            },
+            "Land Rover": {
+              "Evoque": ["2.0 Turbo", "R-Dynamic"],
+              "Discovery Sport": ["2.0 Turbo", "HSE"],
+              "Range Rover Sport SVR": ["5.0 V8 Supercharged"]
+            },
+            "Mercedes": {
+              "A": ["A200", "A250", "AMG A35"],
+              "B": ["B180", "B200", "B250"],
+              "C": ["C180", "C200", "AMG C43"],
+              "CLA": ["CLA200", "CLA250", "AMG CLA35"],
+              "GLA": ["GLA200", "GLA250", "AMG GLA35"],
+              "CLE / GLE Coupé": ["GLE400", "AMG GLE53"],
+              "ML": ["ML350", "ML500"],
+              "S": ["S350", "S500", "AMG S63"],
+              "A45 AMG": ["AMG A45", "AMG A45 S"],
+              "C63 AMG": ["C63", "C63 S"],
+              "E63 AMG": ["E63", "E63 S"],
+              "GT": ["GT S", "GT C", "GT R"]
+            },
+            "Mini": {
+              "Cooper": ["1.5 Turbo", "John Cooper Works"],
+              "Countryman": ["1.5 Turbo", "John Cooper Works"],
+              "John Cooper Works": ["2.0 Turbo", "GP"]
+            },
+            "Mitsubishi": {
+              "Eclipse": ["2.0 Turbo", "GS"],
+              "Lancer": ["2.0", "GT"],
+              "Lancer Evolution": ["2.0 Turbo", "GSR"],
+              "Lancer Ralliart": ["2.0 Turbo", "AWD"],
+              "Outlander": ["2.0", "GT"],
+              "Lancer Evolution X": ["2.0 Turbo", "GSR"]
+            },
+            "Nissan": {
+              "350Z": ["3.5 V6", "Touring"],
+              "370Z": ["3.7 V6", "Nismo"],
+              "GT-R": ["3.8 V6 Twin Turbo", "Nismo"],
+              "Frontier": ["2.3 Diesel", "Attack", "LE"]
+            },
+            "Porsche": {
+              "Boxster": ["2.0", "S", "GTS"],
+              "Cayenne": ["3.0", "S", "Turbo"],
+              "Cayman": ["2.0", "S", "GTS"],
+              "Macan": ["2.0", "S", "GTS"],
+              "718 Cayman": ["2.0", "S", "GTS"],
+              "911": ["Carrera", "S", "Turbo"],
+              "911 Turbo": ["Turbo", "Turbo S"],
+              "911 GT3": ["GT3", "GT3 RS"],
+              "Taycan": ["4S", "Turbo", "Turbo S"]
+            },
+            "Renault": {
+              "Sandero": ["Expression", "GT Line", "RS"],
+              "Megane RS": ["Cup", "Cup-S"]
+            },
+            "Subaru": {
+              "Forester XT": ["2.0 Turbo", "Sport"],
+              "Impreza": ["2.0", "WRX"],
+              "Legacy": ["2.5", "GT"],
+              "WRX STI": ["2.5 Turbo", "Limited"],
+              "BRZ": ["2.0", "S"]
+            },
+            "Troller": {
+              "T4": ["3.2 Diesel", "XLT"]
+            },
+            "Volkswagen": {
+              "Amarok": ["2.0 Diesel", "V6 Highline"],
+              "Golf": ["1.4 TSI", "GTI", "R"],
+              "Golf GTI": ["2.0 TSI", "Performance"],
+              "Golf R": ["2.0 TSI", "Performance"],
+              "Jetta": ["1.4 TSI", "GLI", "Highline"],
+              "Polo": ["1.0 TSI", "GTS", "GTI"],
+              "Polo GTS": ["1.0 TSI", "GTS"],
+              "Nivus": ["1.0 TSI", "Highline"],
+              "Virtus": ["1.0 TSI", "GTS", "Highline"],
+              "Virtus GTS": ["1.0 TSI", "GTS"],
+              "Passat": ["2.0 TSI", "Highline", "R-Line"],
+              "T-Cross": ["1.0 TSI", "200 TSI", "Highline"],
+              "Taos": ["1.4 TSI", "Highline"],
+              "Tiguan": ["1.4 TSI", "Allspace", "R-Line"],
+              "Up!": ["1.0", "Speed", "Cross"]
+            }
+          };
+
+          // Elementos do formulário
+          const selectFabricante = document.getElementById("fabricante");
+          const selectModelo = document.getElementById("modelo");
+          const selectAno = document.getElementById("ano");
+          const selectVersao = document.getElementById("versao");
+
+          // Atualiza modelos ao mudar fabricante
+          selectFabricante.addEventListener("change", function () {
+            const fabricante = this.value;
+            selectModelo.innerHTML = '<option value="">Modelo</option>';
+            selectAno.innerHTML = '<option value="">Ano de Fabricação</option>';
+            selectVersao.innerHTML = '<option value="">Versão</option>';
+
+            if (fabricante && anosPorModelo[fabricante]) {
+              Object.keys(anosPorModelo[fabricante]).forEach(modelo => {
+                const option = document.createElement("option");
+                option.value = modelo;
+                option.textContent = modelo;
+                selectModelo.appendChild(option);
+              });
+            }
+          });
+
+          // Atualiza anos e versões ao mudar modelo
+          selectModelo.addEventListener("change", function () {
+            const fabricante = selectFabricante.value;
+            const modelo = this.value;
+
+            // Preencher anos
+            selectAno.innerHTML = '<option value="">Ano de Fabricação</option>';
+            if (fabricante && modelo && anosPorModelo[fabricante][modelo]) {
+              anosPorModelo[fabricante][modelo].forEach(ano => {
+                const option = document.createElement("option");
+                option.value = ano;
+                option.textContent = ano;
+                selectAno.appendChild(option);
+              });
+            }
+
+            // Preencher versões
+            selectVersao.innerHTML = '<option value="">Versão</option>';
+            if (fabricante && modelo && versoesPorModelo[fabricante][modelo]) {
+              versoesPorModelo[fabricante][modelo].forEach(versao => {
+                const option = document.createElement("option");
+                option.value = versao;
+                option.textContent = versao;
+                selectVersao.appendChild(option);
+              });
+            }
+          });
+
+
+        </script>
 
 
       </div>
