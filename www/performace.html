@@ -113,8 +113,12 @@
                 return false;
               }
             }
-            return true; // Tudo certo, pode enviar
+
+            // Se todos os campos estiverem preenchidos, redireciona para a página STAGES
+            window.location.href = "stages.html"; // ou "stages.php", conforme o nome do seu arquivo
+            return false; // Evita envio real do formulário
           }
+
         </script>
 
         <script src="js/script.js"></script>

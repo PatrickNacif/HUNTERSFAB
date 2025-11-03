@@ -1,0 +1,166 @@
+/* ==============================
+   TOPO (NAVBAR)
+============================== */
+.top-nav,
+.top-nav2,
+.top-nav3 {
+  text-align: center;
+  padding: 2px 0;
+  height: auto;
+  overflow: hidden;
+  background-color: rgb(145, 5, 5);
+  /* Navegação superior centralizada e com padding */
+}
+
+/* ==============================
+   LOGO
+============================== */
+.imagem-logo {
+  display: block;
+  width: 200px;
+  height: auto;
+  margin: 0 auto 8px auto;
+  object-fit: contain;
+  /* Estilo para as imagens de logo com centralização e tamanho */
+}
+
+/* ==============================
+   PLACEHOLDER
+============================== */
+::placeholder {
+  color: #b3afaf;
+  /* Cor do texto do placeholder no campo de texto */
+}
+
+/* ==============================
+   CONTEÚDO DA PÁGINA
+============================== */
+.page-content {
+  background: var(--preto);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: calc(100vh - 100px);
+  padding-top: 20px;
+}
+
+/* ==============================
+   BOTÕES STAGE 1 / STAGE 2
+============================== */
+.stages-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.stage-button {
+  position: relative;
+  color: white;
+  font-weight: bold;
+  padding: 12px 36px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 160px;
+  text-align: center;
+}
+
+/* Botão vermelho principal */
+.stage1 {
+  background-color: #e70303;
+}
+
+/* Botão vermelho escuro */
+.stage2 {
+  background-color: #ad0505;
+}
+
+/* Botão vinho (stage3) */
+.stage3 {
+  background-color: #420101;
+}
+
+/* Triângulo abaixo do botão */
+.stage-button::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.stage1::after {
+  border-top: 10px solid #e70303;
+}
+
+.stage2::after {
+  border-top: 10px solid #ad0505;
+}
+
+.stage3::after {
+  border-top: 10px solid #420101;
+}
+
+.stage-button:hover {
+  opacity: 0.9;
+}
+
+/* ==============================
+   TOOLBAR INFERIOR
+============================== */
+.toolbar-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Ícones da toolbar */
+.toolbar-inner i {
+  font-size: 32px;
+  color: #000000;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Texto da toolbar */
+.toolbar-inner span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+  line-height: 1.2;
+}
+
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+@media (max-width: 480px) {
+  .imagem-logo {
+    width: 140px;
+  }
+
+  .stage-button {
+    padding: 10px 26px;
+    font-size: 14px;
+    min-width: 130px;
+  }
+
+  .stage-button::after {
+    bottom: -8px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+  }
+}
