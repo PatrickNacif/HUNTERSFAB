@@ -46,16 +46,8 @@
 }
 
 /* ==============================
-   BOTÕES STAGE 1 / STAGE 2
+   BOTÕES STAGE 1 / STAGE 2 / STAGE 3
 ============================== */
-.stages-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  margin-top: 30px;
-}
-
 .stage-button {
   position: relative;
   color: white;
@@ -73,22 +65,18 @@
   text-align: center;
 }
 
-/* Botão vermelho principal */
 .stage1 {
   background-color: #e70303;
 }
 
-/* Botão vermelho escuro */
 .stage2 {
   background-color: #ad0505;
 }
 
-/* Botão vinho (stage3) */
 .stage3 {
-  background-color: #420101;
+  background-color: #5c0202;
 }
 
-/* Triângulo abaixo do botão */
 .stage-button::after {
   content: "";
   position: absolute;
@@ -110,11 +98,42 @@
 }
 
 .stage3::after {
-  border-top: 10px solid #420101;
+  border-top: 10px solid #5c0202;
 }
 
 .stage-button:hover {
   opacity: 0.9;
+}
+
+/* ==============================
+   CONTAINER DOS STAGES
+============================== */
+.stages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.stage-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ==============================
+   RETÂNGULOS DOS STAGES
+============================== */
+.stage-box {
+  width: 100%;
+  max-width: 650px;
+  height: 350px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 /* ==============================
@@ -128,7 +147,6 @@
   text-align: center;
 }
 
-/* Ícones da toolbar */
 .toolbar-inner i {
   font-size: 32px;
   color: #000000;
@@ -136,7 +154,6 @@
   margin-bottom: 4px;
 }
 
-/* Texto da toolbar */
 .toolbar-inner span {
   font-size: 16px;
   font-weight: bold;
@@ -145,22 +162,25 @@
 }
 
 /* ==============================
-   RESPONSIVIDADE
+   MENU INFERIOR FIXO
 ============================== */
-@media (max-width: 480px) {
-  .imagem-logo {
-    width: 140px;
-  }
+.toolbar-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgb(145, 5, 5);
+  /* mantém o design da navbar superior */
+  z-index: 9999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+}
 
-  .stage-button {
-    padding: 10px 26px;
-    font-size: 14px;
-    min-width: 130px;
-  }
-
-  .stage-button::after {
-    bottom: -8px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-  }
+/* ==============================
+   EVITAR SOBREPOSIÇÃO COM MENU INFERIOR
+============================== */
+.page,
+.stages-wrapper {
+  padding-bottom: 60px;
+  /* Cria espaço pro menu fixo */
+  box-sizing: border-box;
 }
