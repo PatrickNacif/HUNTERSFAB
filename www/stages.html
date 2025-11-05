@@ -9,70 +9,112 @@
   <meta name="theme-color" content="#2196f3">
   <title>Stages</title>
 
-  <!-- Framework7 CSS -->
   <link rel="stylesheet" href="lib/framework7-bundle.min.css">
-
-  <!-- CSSs personalizados -->
   <link rel="stylesheet" href="css/stages.css">
   <link rel="stylesheet" href="css/performace.css">
   <link rel="stylesheet" href="css/index.css">
-
-  <!-- Ícones -->
   <link rel="stylesheet" href="css/materialdesignicons.min.css">
   <link rel="stylesheet" href="css/remixicon/remixicon.css">
 
-
+  <style>
+    .stage-box {
+      min-height: 80px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      margin-bottom: 12px
+    }
+  </style>
 </head>
 
 <body>
-  <!-- PÁGINA PRINCIPAL -->
   <div data-name="stages" class="page color-theme-blue">
 
-    <!-- TOPO / LOGO -->
     <div class="top-nav2">
       <a href="#" onclick="window.location.href='http://localhost/HUNTERSFAB/www/'; return false;">
         <img src="img/logo.png" alt="Logo" class="imagem-logo">
       </a>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <div class="stages-wrapper">
       <div class="stages-container">
 
-
-        <div class="stage-item"></div>
         <button class="stage-button stage1">Stage 1</button>
-        <div class="stage-box"></div>
+        <div class="stage-box" id="stage1_box">Carregando...</div>
 
-        <div class="stage-item"></div>
         <button class="stage-button stage2">Stage 2</button>
-        <div class="stage-box"></div>
+        <div class="stage-box" id="stage2_box">Carregando...</div>
 
-        <div class="stage-item"></div>
         <button class="stage-button stage3">Stage 3</button>
-        <div class="stage-box"></div>
+        <div class="stage-box" id="stage3_box">Carregando...</div>
 
       </div>
     </div>
   </div>
 
-  <!-- MENU INFERIOR FIXO -->
   <div id="menuPrincipal" class="toolbar toolbar-bottom">
     <div class="toolbar-inner display-flex">
       <a href="#" onclick="window.location.href='http://localhost/HUNTERSFAB/www/performace.html'; return false;">
         <i class="ri-speed-line"></i>
-        <span>Performance</span>
+        <span>Stages</span>
       </a>
     </div>
   </div>
 
+  <script>
+    function N(txt) { return String(txt).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/g, "").replace(/\s+/g, " ").trim().toLowerCase() }
+    function getBestKey(obj, key) {
+      const target = N(key)
+      let exact = Object.keys(obj).find(k => N(k) == target)
+      if (exact) return exact
+      let start = Object.keys(obj).find(k => N(k).startsWith(target))
+      if (start) return start
+      let include = Object.keys(obj).find(k => N(k).includes(target))
+      if (include) return include
+      return null
+    }
 
-  <!-- SCRIPTS -->
-  <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
-  <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>
-  <script type="text/javascript" src="js/routes.js"></script>
+    function render(id, f, m, a, v, obj) {
+      const el = document.getElementById(id)
+      if (!obj) { el.innerHTML = `<b>Não disponível</b>`; return; }
+      const desc = Array.isArray(obj.descricao) ? `<ul>${obj.descricao.map(x => `<li>${x}</li>`).join('')}</ul>` : ''
+      const calib = Array.isArray(obj.calibracoes_disponiveis) ? `<b>Calibrações:</b> ${obj.calibracoes_disponiveis.join(', ')}` : ''
+      el.innerHTML =
+        `<b>${f} ${m} ${a} ${v}</b><br><br>
+   Potência original: ${obj.potencia_original || '-'}<br>
+   Potência: ${obj.potencia || '-'}<br>
+   Ganho HP: ${obj.ganho_hp || '-'}<br><br>
+   Torque original: ${obj.torque_original || '-'}<br>
+   Torque: ${obj.torque || '-'}<br>
+   Ganho Nm: ${obj.ganho_nm || '-'}<br><br>
+   ${desc}${calib}`
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const f = localStorage.getItem("fabricante")
+      const m = localStorage.getItem("modelo")
+      const a = localStorage.getItem("ano")
+      const v = localStorage.getItem("versao")
+
+      const res = await fetch("stages_performance.json", { cache: "no-store" })
+      const data = await res.json()
+
+      const FK = getBestKey(data, f)
+      const MK = getBestKey(data[FK], m)
+      const VK = getBestKey(data[FK][MK], v)
+
+      render("stage1_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 1"])
+      render("stage2_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 2"])
+      render("stage3_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 3"])
+    })
+  </script>
+
+  <script src="lib/framework7-bundle.min.js"></script>
+  <script src="lib/jquery-3.7.0.min.js"></script>
+  <script src="js/routes.js"></script>
   <script src="cordova.js"></script>
-</body>
 
+</body>
 
 </html>
