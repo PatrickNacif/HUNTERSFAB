@@ -1,39 +1,32 @@
-<!DOCTYPE html>
 <html>
 
+</html>
+
 <head>
-  <!-- Required meta tags-->
+  <!-- META TAGS -->
   <meta charset="utf-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <!-- Color theme for statusbar (Android only) -->
   <meta name="theme-color" content="#2196f3">
 
-  <!-- Your app title -->
+  <!-- TÍTULO -->
   <title>Performace</title>
 
-  <!-- Path to Framework7 Library Bundle CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="lib/framework7-bundle.min.css">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/performace.css">
   <link rel="stylesheet" href="css/personalizado.css">
-
-  <!-- CSS PERSONALIZADO PARA MENU-->
-  <link rel="stylesheet" href="css/personalizado.css">
-  <!--Ícones Material Design-->
   <link rel="stylesheet" href="css/materialdesignicons.min.css">
 </head>
 
 <body>
-  <!-- App root element -->
   <div id="app">
-    <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
-      <!-- Initial Page, "data-name" contains page name -->
       <div data-name="performace" class="page">
 
-        <!-- Top Navbar -->
+        <!-- TOPO -->
         <div class="top-nav2">
           <a href="#" class="top-nav2" onclick="window.location.href='http://localhost/HUNTERSFAB/www/'; return false;">
             <img src="img/logo.png" alt="Logo" class="imagem-logo">
@@ -41,10 +34,9 @@
           </a>
         </div>
 
-
         <br>
 
-        <!-- BARRA DE FILTRO -->
+        <!-- FILTRO -->
         <form class="filter-bar" aria-label="Filtro de pesquisa" onsubmit="return validarFiltro();">
           <div class="filter-inner">
 
@@ -104,21 +96,33 @@
           </div>
         </footer>
 
+        <!-- SCRIPT PRINCIPAL -->
         <script>
           function validarFiltro() {
             const selects = document.querySelectorAll("select[required]");
             for (const select of selects) {
               if (!select.value) {
-                select.reportValidity(); // Mostra a notificação padrão do navegador
+                select.reportValidity();
                 return false;
               }
             }
 
-            // Se todos os campos estiverem preenchidos, redireciona para a página STAGES
-            window.location.href = "stages.html"; // ou "stages.php", conforme o nome do seu arquivo
-            return false; // Evita envio real do formulário
-          }
+            // Captura os valores selecionados
+            const fabricante = document.getElementById("fabricante").value;
+            const modelo = document.getElementById("modelo").value;
+            const ano = document.getElementById("ano").value;
+            const versao = document.getElementById("versao").value;
 
+            // Salva no localStorage (chaves compatíveis com o stages.html)
+            localStorage.setItem("fabricanteSelecionado", fabricante);
+            localStorage.setItem("modeloSelecionado", modelo);
+            localStorage.setItem("anoSelecionado", ano);
+            localStorage.setItem("versaoSelecionada", versao);
+
+            // Redireciona para Stages
+            window.location.href = "stages.html";
+            return false;
+          }
         </script>
 
         <script src="js/script.js"></script>

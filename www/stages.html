@@ -25,6 +25,14 @@
       border: 1px solid #e6e6e6;
       margin-bottom: 12px
     }
+
+    .car-info {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin: 15px 0 25px 0;
+    }
   </style>
 </head>
 
@@ -39,6 +47,8 @@
 
     <div class="stages-wrapper">
       <div class="stages-container">
+
+        <div class="car-info" id="carInfo">Carregando...</div>
 
         <button class="stage-button stage1">Stage 1</button>
         <div class="stage-box" id="stage1_box">Carregando...</div>
@@ -57,64 +67,102 @@
     <div class="toolbar-inner display-flex">
       <a href="#" onclick="window.location.href='http://localhost/HUNTERSFAB/www/performace.html'; return false;">
         <i class="ri-speed-line"></i>
-        <span>Stages</span>
+        <span>Performace</span>
       </a>
     </div>
   </div>
 
   <script>
-    function N(txt) { return String(txt).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/g, "").replace(/\s+/g, " ").trim().toLowerCase() }
+    // ======== Funções utilitárias ===========
+    function normalizar(txt) {
+      return String(txt || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim()
+        .toLowerCase();
+    }
+
+    // Busca exata, com fallback apenas se existir uma correspondência única semelhante
     function getBestKey(obj, key) {
-      const target = N(key)
-      let exact = Object.keys(obj).find(k => N(k) == target)
-      if (exact) return exact
-      let start = Object.keys(obj).find(k => N(k).startsWith(target))
-      if (start) return start
-      let include = Object.keys(obj).find(k => N(k).includes(target))
-      if (include) return include
-      return null
+      if (!obj || !key) return null;
+      const target = normalizar(key);
+
+      // 1. Match exato (ignora acentos, mas mantém pontuação)
+      let exact = Object.keys(obj).find(k => normalizar(k) === target);
+      if (exact) return exact;
+
+      // 2. Fallback: se há apenas uma semelhante
+      const similares = Object.keys(obj).filter(k => normalizar(k).includes(target));
+      return similares.length === 1 ? similares[0] : null;
     }
 
     function render(id, f, m, a, v, obj) {
-      const el = document.getElementById(id)
-      if (!obj) { el.innerHTML = `<b>Não disponível</b>`; return; }
-      const desc = Array.isArray(obj.descricao) ? `<ul>${obj.descricao.map(x => `<li>${x}</li>`).join('')}</ul>` : ''
-      const calib = Array.isArray(obj.calibracoes_disponiveis) ? `<b>Calibrações:</b> ${obj.calibracoes_disponiveis.join(', ')}` : ''
-      el.innerHTML =
-        `<b>${f} ${m} ${a} ${v}</b><br><br>
-   Potência original: ${obj.potencia_original || '-'}<br>
-   Potência: ${obj.potencia || '-'}<br>
-   Ganho HP: ${obj.ganho_hp || '-'}<br><br>
-   Torque original: ${obj.torque_original || '-'}<br>
-   Torque: ${obj.torque || '-'}<br>
-   Ganho Nm: ${obj.ganho_nm || '-'}<br><br>
-   ${desc}${calib}`
+      const el = document.getElementById(id);
+      if (!obj) {
+        el.innerHTML = `<b>Não disponível</b>`;
+        return;
+      }
+      const desc = Array.isArray(obj.descricao)
+        ? `<ul>${obj.descricao.map(x => `<li>${x}</li>`).join('')}</ul>`
+        : "";
+      const calib = Array.isArray(obj.calibracoes_disponiveis)
+        ? `<b>Calibrações:</b> ${obj.calibracoes_disponiveis.join(', ')}`
+        : "";
+      el.innerHTML = `
+        <b>${f} ${m} ${v} ${a}</b><br><br>
+        Potência original: ${obj.potencia_original || '-'}<br>
+        Potência: ${obj.potencia || '-'}<br>
+        Ganho HP: ${obj.ganho_hp || '-'}<br><br>
+        Torque original: ${obj.torque_original || '-'}<br>
+        Torque: ${obj.torque || '-'}<br>
+        Ganho Nm: ${obj.ganho_nm || '-'}<br><br>
+        ${desc}${calib}`;
     }
 
+    // =========== Lógica principal ===========
     document.addEventListener("DOMContentLoaded", async () => {
-      const f = localStorage.getItem("fabricante")
-      const m = localStorage.getItem("modelo")
-      const a = localStorage.getItem("ano")
-      const v = localStorage.getItem("versao")
+      const f = localStorage.getItem("fabricanteSelecionado") || localStorage.getItem("fabricante");
+      const m = localStorage.getItem("modeloSelecionado") || localStorage.getItem("modelo");
+      const a = localStorage.getItem("anoSelecionado") || localStorage.getItem("ano");
+      const v = localStorage.getItem("versaoSelecionada") || localStorage.getItem("versao");
 
-      const res = await fetch("stages_performance.json", { cache: "no-store" })
-      const data = await res.json()
+      const carInfo = document.getElementById("carInfo");
+      if (!f || !m) {
+        carInfo.textContent = "Nenhum veículo selecionado.";
+        document.querySelectorAll(".stage-box").forEach(e => e.innerHTML = "Volte à página Performace e selecione um carro.");
+        return;
+      }
+      carInfo.textContent = `${f} ${m} ${v || ""} ${a || ""}`;
 
-      const FK = getBestKey(data, f)
-      const MK = getBestKey(data[FK], m)
-      const VK = getBestKey(data[FK][MK], v)
+      try {
+        const res = await fetch("stages_performance.json", { cache: "no-store" });
+        const data = await res.json();
 
-      render("stage1_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 1"])
-      render("stage2_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 2"])
-      render("stage3_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 3"])
-    })
+        const FK = getBestKey(data, f);
+        if (!FK) throw new Error(`Fabricante "${f}" não encontrado.`);
+
+        const MK = getBestKey(data[FK], m);
+        if (!MK) throw new Error(`Modelo "${m}" não encontrado em ${FK}.`);
+
+        const VK = getBestKey(data[FK][MK], v);
+        if (!VK) throw new Error(`Versão "${v}" não encontrada em ${FK} ${MK}.`);
+
+        render("stage1_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 1"]);
+        render("stage2_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 2"]);
+        render("stage3_box", FK, MK, a, VK, data[FK][MK][VK]["Stage 3"]);
+      } catch (err) {
+        console.error("Erro ao carregar dados:", err);
+        document.getElementById("stage1_box").innerHTML = err.message;
+        document.getElementById("stage2_box").innerHTML = "";
+        document.getElementById("stage3_box").innerHTML = "";
+      }
+    });
   </script>
 
   <script src="lib/framework7-bundle.min.js"></script>
   <script src="lib/jquery-3.7.0.min.js"></script>
   <script src="js/routes.js"></script>
   <script src="cordova.js"></script>
-
 </body>
 
 </html>
