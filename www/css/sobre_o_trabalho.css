@@ -39,7 +39,7 @@
   ============================== */
 .texto h1 {
     text-align: center;
-    color: rgb(200, 0, 0);
+    color: rgb(0, 0, 0);
     font-size: 32px;
     margin-bottom: 25px;
     letter-spacing: 1px;
@@ -54,44 +54,4 @@
     text-transform: uppercase;
     border-left: 4px solid #e70303;
     padding-left: 10px;
-}
-
-/* ==============================
-     PARÁGRAFOS
-  ============================== */
-.texto p {
-    color: #ddd;
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-.texto strong {
-    color: #ff3333;
-    font-weight: 600;
-}
-
-.texto em {
-    color: #ffae00;
-    font-style: normal;
-}
-
-/* ==============================
-     RESPONSIVIDADE
-  ============================== */
-@media (max-width: 768px) {
-    .texto {
-        padding: 25px;
-    }
-
-    .texto h1 {
-        font-size: 26px;
-    }
-
-    .texto h2 {
-        font-size: 20px;
-    }
-
-    .texto p {
-        font-size: 15px;
-    }
 }

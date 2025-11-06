@@ -4,13 +4,11 @@ html {
   margin: 0;
   padding: 0;
   background-color: #111;
-  /* fundo externo */
+  /* fundo externo escuro */
 }
 
 /* Centraliza o conteúdo dentro da página */
-
-
-.page[data-name="sobre"] .page-content {
+.page-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,25 +18,32 @@ html {
   min-height: calc(100vh - 120px);
   /* Ajusta o espaço levando em conta o topo e o rodapé */
   padding: 20px 10px;
-  box-sizing: border-box;
-  background-color: #000;
 }
-
 
 /* Bloco branco centralizado */
 .texto {
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  /* fundo branco */
+  color: #000;
+  /* texto preto */
+  border-radius: 12px;
+  /* bordas arredondadas */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  /* sombra suave */
   padding: 40px;
   max-width: 1100px;
   width: 100%;
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
+  border: 1px solid #ddd;
+  /* leve contorno */
 }
 
 /* Estilo interno */
 .sobre-nos h1 {
   text-align: center;
   color: #000;
+  /* preto */
   margin-bottom: 30px;
 }
 
@@ -46,18 +51,6 @@ html {
   font-size: 18px;
   line-height: 1.6;
   text-align: justify;
-}
-
-.sobre-nos .final {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.texto>div {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
+  color: #000;
+  /* texto preto */
 }
