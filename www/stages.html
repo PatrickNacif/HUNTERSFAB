@@ -28,9 +28,9 @@
 
     .car-info {
       text-align: center;
-      font-size: 18px;
+      font-size: 25px;
       font-weight: 600;
-      color: #333;
+      color: #fffbfb;
       margin: 15px 0 25px 0;
     }
   </style>
@@ -109,14 +109,14 @@
         ? `<b>Calibrações:</b> ${obj.calibracoes_disponiveis.join(', ')}`
         : "";
       el.innerHTML = `
-        <b>${f} ${m} ${v} ${a}</b><br><br>
-        Potência original: ${obj.potencia_original || '-'}<br>
-        Potência: ${obj.potencia || '-'}<br>
-        Ganho HP: ${obj.ganho_hp || '-'}<br><br>
-        Torque original: ${obj.torque_original || '-'}<br>
-        Torque: ${obj.torque || '-'}<br>
-        Ganho Nm: ${obj.ganho_nm || '-'}<br><br>
-        ${desc}${calib}`;
+        <br>
+        <b>Potência original:</b> <span class="valor-potencia">${obj.potencia_original || '-'}</span><br>
+        <b>Potência:</b> <span class="valor-potencia">${obj.potencia || '-'}</span><br>
+        <b>Ganho HP:</b> <span class="valor-ganho">+${obj.ganho_hp || '-'}</span><br><br>
+        <b>Torque original:</b> <span class="valor-torque">${obj.torque_original || '-'}</span><br>
+        <b>Torque:</b> <span class="valor-torque">${obj.torque || '-'}</span><br>
+        <b>Ganho Nm:</b> <span class="valor-ganho">+${obj.ganho_nm || '-'}</span><br><br>
+        ${desc}${calib}<br>`;
     }
 
     // =========== Lógica principal ===========
