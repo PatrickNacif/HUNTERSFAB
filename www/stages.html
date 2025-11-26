@@ -65,7 +65,7 @@
 
   <div id="menuPrincipal" class="toolbar toolbar-bottom">
     <div class="toolbar-inner display-flex">
-      <a href="#" onclick="window.location.href='http://localhost/HUNTERSFAB/www/performace.html'; return false;">
+      <a href="#" onclick="window.location.href='http://localhost/HUNTERSFAB/www/performance.html'; return false;">
         <i class="ri-speed-line"></i>
         <span>Performance</span>
       </a>
@@ -129,7 +129,7 @@
       const carInfo = document.getElementById("carInfo");
       if (!f || !m) {
         carInfo.textContent = "Nenhum veículo selecionado.";
-        document.querySelectorAll(".stage-box").forEach(e => e.innerHTML = "Volte à página Performace e selecione um carro.");
+        document.querySelectorAll(".stage-box").forEach(e => e.innerHTML = "Volte à página Performance e selecione um carro.");
         return;
       }
       carInfo.textContent = `${f} ${m} ${v || ""} ${a || ""}`;

@@ -48,7 +48,7 @@ function exibir_mensagem($texto, $tipo = 'erro', $redirect = null, $tempo = 3) {
                 border-radius: 12px;
                 box-shadow: 0 0 10px rgba(0,0,0,0.1);
                 text-align: center;
-            }
+            }l
             h2 { color: {$cor}; }
             a { color: #007bff; text-decoration: none; margin-top: 15px; display: inline-block; }
         </style>
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['usuario'] = $email;
 
             // ✅ Mensagem de sucesso + redirecionamento após 2 segundos
-            exibir_mensagem("✅ Login realizado com sucesso! Redirecionando...", "sucesso", "performace.html", 2);
+            exibir_mensagem("✅ Login realizado com sucesso! Redirecionando...", "sucesso", "performance.html", 2);
         } else {
             exibir_mensagem("❌ Usuário ou senha incorretos!", "erro");
         }
